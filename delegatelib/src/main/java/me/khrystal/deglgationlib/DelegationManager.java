@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import me.khrystal.deglgationlib.base.DelegateAdapter;
 import me.khrystal.deglgationlib.base.DelegateViewHolder;
 import me.khrystal.deglgationlib.base.Delegation;
 import me.khrystal.deglgationlib.base.DelegationInterface;
@@ -22,7 +23,17 @@ import me.khrystal.deglgationlib.base.DelegationInterface;
  */
 public class DelegationManager<E> {
 
+    private boolean useKRecyclerView;
+
     SparseArrayCompat<DelegationInterface<E>> delegations = new SparseArrayCompat<>();
+
+    public DelegationManager(){
+
+    }
+
+    public DelegationManager(boolean useKRecyclerView){
+        this.useKRecyclerView = useKRecyclerView;
+    }
 
     public DelegationManager<E> addDelegation(@NonNull DelegationInterface<E> delegate) {
         return addDelegation(delegate, false);
@@ -95,7 +106,8 @@ public class DelegationManager<E> {
     }
 
     public void onBindViewHolder(@NonNull List<E> items, int position, @NonNull DelegateViewHolder holder){
-        DelegationInterface<E> delegation = delegations.get(holder.getItemViewType());
+        DelegationInterface<E> delegation = delegations.get(useKRecyclerView ? holder.getItemViewType() - Integer.MAX_VALUE / 2
+                : holder.getItemViewType());
         if (delegation == null){}
             // TODO: 16/5/11 if use custom recyclerview to loadmore footerView is not delegation ,do nothing
 //            throw new NullPointerException(

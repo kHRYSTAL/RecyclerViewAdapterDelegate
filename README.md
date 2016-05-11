@@ -14,7 +14,7 @@ allprojects {
 
 ```
 dependencies {
-	        compile 'com.github.kHRYSTAL:RecyclerViewAdapterDelegate:v1.1'
+	        compile 'com.github.kHRYSTAL:RecyclerViewAdapterDelegate:v1.1.2'
 	}
 ```
 

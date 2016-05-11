@@ -23,6 +23,12 @@ public class DelegateAdapter<E> extends RecyclerView.Adapter<DelegateViewHolder>
 
     private DelegationManager<E> mDelegationManager;
 
+    public DelegateAdapter(Context context, List<E> datas, boolean useKRecyclerView){
+        mDelegationManager = new DelegationManager<>(useKRecyclerView);
+        mContext = context;
+        mDatas = datas;
+    }
+
     public DelegateAdapter(Context context, List<E> datas){
         mDelegationManager = new DelegationManager<>();
         mContext = context;

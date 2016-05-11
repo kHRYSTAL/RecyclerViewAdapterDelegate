@@ -96,9 +96,10 @@ public class DelegationManager<E> {
 
     public void onBindViewHolder(@NonNull List<E> items, int position, @NonNull DelegateViewHolder holder){
         DelegationInterface<E> delegation = delegations.get(holder.getItemViewType());
-        if (delegation == null)
-            throw new NullPointerException(
-                    "No Delegation added for ViewType " + holder.getItemViewType());
+        if (delegation == null){}
+            // TODO: 16/5/11 if use custom recyclerview to loadmore footerView is not delegation ,do nothing
+//            throw new NullPointerException(
+//                    "No Delegation added for ViewType " + holder.getItemViewType());
         delegation.onBindViewHolder(items,position,holder);
     }
 
